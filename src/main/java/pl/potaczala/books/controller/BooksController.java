@@ -16,7 +16,7 @@ import pl.potaczala.books.repository.BookRep;
 public class BooksController {
 
 	@Autowired
-	private BookRep books;
+	BookRep books;
 
 	@RequestMapping("/lista")
 	public ModelAndView bookList() {
@@ -42,10 +42,10 @@ public class BooksController {
 
 	@RequestMapping("/book-{id}")
 	public ModelAndView bookDetails(@PathVariable("id") Long id) {
-		Optional<Book> book = books.findById(id);
+		Optional<Book> book = books.findById(id);		
 		if (!book.isPresent()) {}
 		ModelAndView mv = new ModelAndView("details");
-		mv.addObject("book", book);
+		mv.addObject("book", book.get());
 		return mv;
 	}
 }
