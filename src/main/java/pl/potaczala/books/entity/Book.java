@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "book")
 public class Book {
@@ -28,7 +30,11 @@ public class Book {
 	private String title;
 	
 	@Column(name = "bk_number_of_pages")
-	private long numberOfPages;
+	private Integer numberOfPages;
+	
+	@Column(name = "bk_release_date")	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date releaseDate;
 	
 	public Author getAuthor() {
 		return author;
@@ -37,9 +43,6 @@ public class Book {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
-
-	@Column(name = "bk_release_date")	
-	private Date releaseDate;
 
 	public long getId() {
 		return id;
@@ -57,7 +60,7 @@ public class Book {
 		this.title = title;
 	}
 
-	public long getNumberOfPages() {
+	public Integer getNumberOfPages() {
 		return numberOfPages;
 	}
 

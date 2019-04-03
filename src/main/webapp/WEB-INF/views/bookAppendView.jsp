@@ -21,8 +21,12 @@
 					</tr>
 					<tr>
 						<td>Liczba stron:</td>
-						<td><input name="numberOfPages"/></td> 
-					</tr>						
+						<td><form:input path="numberOfPages"/></td> 
+					</tr>	
+					<tr>
+						<td>Data wydania:</td>
+						<td><input type="date" name="releaseDate" value="2010-01-01"/></td> 
+					</tr>											
 					<tr>
 						<td><form:label path="author">Autor:</form:label></td>
 						<td>
