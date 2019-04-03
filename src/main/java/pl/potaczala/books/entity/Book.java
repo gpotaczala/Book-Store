@@ -1,23 +1,44 @@
-package pl.potaczala.books.domain;
+package pl.potaczala.books.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BOOK")
+@Table(name = "book")
 public class Book {
 
 	@Id
+	@Column(name = "bk_id", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	@ManyToOne
+	@JoinColumn(name = "ath_id")
+	private Author author;
+	
+	@Column(name = "bk_title")
 	private String title;
-	private String author;
-	private Integer numberOfPages;
+	
+	@Column(name = "bk_number_of_pages")
+	private long numberOfPages;
+	
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
+	@Column(name = "bk_release_date")	
 	private Date releaseDate;
 
 	public long getId() {
@@ -36,15 +57,7 @@ public class Book {
 		this.title = title;
 	}
 
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public int getNumberOfPages() {
+	public long getNumberOfPages() {
 		return numberOfPages;
 	}
 

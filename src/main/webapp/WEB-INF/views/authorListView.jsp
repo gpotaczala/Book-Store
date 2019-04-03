@@ -4,26 +4,24 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Lista książek</title>
+		<title>Lista autorów</title>
 	</head>
 	<body>
-		<a href="dodaj">Dodaj książkę</a><br />
+		<a href="author-append">Dodaj autora</a><br />
 		<table border="1">
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Tytuł</th>
-					<th>Autor</th>	
-					<th>Liczba stron</th>			
+					<th>Nazwisko</th>
+					<th>Imię</th>			
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${books}" var="book" varStatus="status">
+				<c:forEach items="${authors}" var="author" varStatus="status">
 				<tr>
-					<td>${status.index}</td>
-					<td><a href="<c:url value="book-${book.id}" />">${book.title}</a></td>
-					<td>${book.author}</td>		
-					<td>${book.numberOfPages}</td>	
+					<td><a href="<c:url value="author-${author.id}" />">${status.index}</a></td>
+					<td>${author.getSurname()}</td>		
+					<td>${author.getName()}</td>	
 				</tr>
 				</c:forEach>			
 			</tbody>

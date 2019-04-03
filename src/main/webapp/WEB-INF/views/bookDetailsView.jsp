@@ -6,7 +6,7 @@
 		<title>Szczegóły książki</title>
 	</head>
 	<body>
-		<a href="lista">Powrót do listy książek</a><br />
+		<a href="list">Powrót do listy książek</a><br />
 		<table border="1">
 			<tbody>
 				<tr>
@@ -15,7 +15,7 @@
 				</tr>
 				<tr>
 					<th>Autor</th>
-					<td>${book.author}</td>
+					<td>${book.author.getSurname()} ${book.author.getName()}</td>
 				</tr>
 				<tr>
 					<th>Liczba stron</th>
