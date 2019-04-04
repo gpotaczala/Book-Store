@@ -28,7 +28,7 @@ public class BooksController {
 	@RequestMapping("/books")
 	public ModelAndView bookList() {
 		ModelAndView mv = new ModelAndView("booksListView");
-		mv.addObject("books", books.findAll());
+		mv.addObject("books", books.findByOrderByTitleAsc());
 		return mv;
 	}
 
@@ -36,7 +36,7 @@ public class BooksController {
 	public ModelAndView appendBookForm() {
 		ModelAndView mv = new ModelAndView("bookAppendView");
 		mv.addObject("book", new Book());
-		mv.addObject("authors", authors.findAll());
+		mv.addObject("authors", authors.findByOrderBySurnameAsc());
 		return mv;
 	}
 

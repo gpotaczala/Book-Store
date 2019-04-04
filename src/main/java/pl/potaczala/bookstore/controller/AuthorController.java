@@ -24,7 +24,7 @@ public class AuthorController {
 	@RequestMapping("/authors")
 	public ModelAndView authorList() {
 		ModelAndView mv = new ModelAndView("authorsListView");
-		mv.addObject("authors", authorRep.findAll());
+		mv.addObject("authors", authorRep.findByOrderBySurnameAsc());
 		return mv;
 	}	
 	
