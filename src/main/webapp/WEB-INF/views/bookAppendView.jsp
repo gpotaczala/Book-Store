@@ -28,30 +28,35 @@
 	<br />
 	<h3>Wprowadzanie nowej książki</h3>
 	<form:form method="POST" modelAttribute="book">
-	<form:errors path="*" cssClass="errorblock" element="div" />
 		<table border="0">
 			<tbody>
 				<tr>
-					<td><form:label path="title">Tytuł:</form:label></td>
-					<td><form:input path="title" /></td>
-					<td><form:errors path="title" cssClass="error" /></td>
+					<spring:bind path="title">
+						<td><form:label path="title">Tytuł:</form:label></td>
+						<td><form:input path="title" /></td>
+						<td><form:errors path="title" cssClass="error" /></td>
+					</spring:bind>
 				</tr>
 				<tr>
 					<td>Liczba stron:</td>
 					<td><form:input path="numberOfPages" /></td>
 				</tr>
 				<tr>
-					<td>Data wydania:</td>
-					<td><input type="date" name="releaseDate" value="2010-01-01" /></td>
+					<spring:bind path="releaseDate">
+						<td>Data wydania:</td>
+						<td><form:input type="date" path="releaseDate"  placeholder="yyyy-MM-dd" /></td>
+						<td><form:errors path="releaseDate" cssClass="error" /></td>	
+					</spring:bind>					
 				</tr>
 				<tr>
-					<td><form:label path="author">Autor:</form:label></td>
-					<td><form:select path="author.id">
+					<spring:bind path="author">
+						<td><form:label path="author">Autor:</form:label></td>
+						<td><form:select path="author.id">
 							<form:option value="-1" label="--wybierz autora--" />
-							<form:options items="${authors}" itemValue="id"
-								itemLabel="surname" />
+							<form:options items="${authors}" itemValue="id"	itemLabel="surname" />
 						</form:select></td>
-					<td><form:errors path="author" cssClass="error" /></td>
+						<td><form:errors path="author" cssClass="error" /></td>						
+					</spring:bind>
 				</tr>
 				<tr>
 					<td colspan="2" align="right"><input type="submit"

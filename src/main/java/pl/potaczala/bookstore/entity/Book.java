@@ -10,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,15 +26,13 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "ath_id")
-	private Author author;
-	
-	@Size(min=2, max=255)
 	@Column(name = "bk_title")
 	private String title;
 	
+	@ManyToOne
+	@JoinColumn(name = "ath_id")
+	private Author author;
+
 	@Column(name = "bk_number_of_pages")
 	private Integer numberOfPages;
 	
