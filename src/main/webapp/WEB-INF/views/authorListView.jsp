@@ -7,7 +7,12 @@
 		<title>Lista autorów</title>
 	</head>
 	<body>
-		<a href="author-append">Dodaj autora</a><br />
+		<table border="0">
+			<tr>
+				<td width="100"><a href="index">Strona główna</a></td>				
+				<td width="100"><a href="author-append">Dodaj autora</a></td>			
+			</tr>
+		</table>			
 		<table border="1">
 			<thead>
 				<tr>

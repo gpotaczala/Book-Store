@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="author")
@@ -21,9 +22,11 @@ public class Author {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@Size(min=2, max=50)
 	@Column(name = "ath_surname")
 	private String surname;
 	
+	@Size(min=2, max=50)
 	@Column(name = "ath_name")
 	private String name;
 	

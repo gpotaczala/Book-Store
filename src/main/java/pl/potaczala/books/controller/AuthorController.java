@@ -37,10 +37,15 @@ public class AuthorController {
 	
 
 	@RequestMapping(value = "/author-append", method = RequestMethod.POST)
-	public ModelAndView appendAuthor(Author author) {
-		authorRep.save(author);
-		ModelAndView mv = new ModelAndView("redirect:/authors"); 
-		mv.addObject("authors", authorRep.findAll());
+	public ModelAndView appendAuthor(@Valid Author author, BindingResult result) {
+		ModelAndView mv;
+		if (!result.hasErrors()) {
+			authorRep.save(author);
+			mv = new ModelAndView("redirect:/authors"); 
+			mv.addObject("authors", authorRep.findAll());
+		} else {
+			mv = new ModelAndView("authorAppendView");
+		}
 		return mv;
 	}	
 	

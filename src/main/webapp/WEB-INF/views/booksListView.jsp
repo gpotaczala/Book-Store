@@ -7,8 +7,13 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Lista książek</title>
 	</head>
-	<body>
-		<a href="append">Dodaj książkę</a><br />
+	<body>		
+		<table border="0">
+			<tr>
+				<td width="100"><a href="index">Strona główna</a></td>					
+				<td width="100"><a href="append">Dodaj książkę</a></td>		
+			</tr>
+		</table>
 		<table border="1">
 			<thead>
 				<tr>

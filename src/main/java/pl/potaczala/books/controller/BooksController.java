@@ -2,8 +2,12 @@ package pl.potaczala.books.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +25,16 @@ public class BooksController {
 	
 	@Autowired
 	AuthorRep authors;	
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index1() {
+		return "indexView";
+	}
+	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index2() {
+		return "indexView";
+	}	
 
 	@RequestMapping("/list")
 	public ModelAndView bookList() {
@@ -38,10 +52,15 @@ public class BooksController {
 	}
 
 	@RequestMapping(value = "/append", method = RequestMethod.POST)
-	public ModelAndView appendBook(Book book) {
-		books.save(book);
-		ModelAndView mv = new ModelAndView("redirect:/list");
-		mv.addObject("books", books.findAll());
+	public ModelAndView appendBook(@Valid Book book, BindingResult result) {
+		ModelAndView mv;	
+		if (!result.hasErrors()) {
+			books.save(book);
+			mv = new ModelAndView("redirect:/list");
+			mv.addObject("books", books.findAll());
+		} else {
+			mv = new ModelAndView("bookAppendView");
+		}
 		return mv;
 	}
 
