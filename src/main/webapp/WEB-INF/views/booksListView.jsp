@@ -11,7 +11,7 @@
 		<table border="0">
 			<tr>
 				<td width="100"><a href="index">Strona główna</a></td>					
-				<td width="100"><a href="append">Dodaj książkę</a></td>		
+				<td width="100"><a href="book-append">Dodaj książkę</a></td>		
 			</tr>
 		</table>
 		<table border="1">

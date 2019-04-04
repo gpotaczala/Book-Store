@@ -6,7 +6,7 @@
 		<title>Szczegóły książki</title>
 	</head>
 	<body>
-		<a href="list">Powrót do listy książek</a><br />
+		<a href="books">Powrót do listy książek</a><br />
 		<table border="1">
 			<tbody>
 				<tr>

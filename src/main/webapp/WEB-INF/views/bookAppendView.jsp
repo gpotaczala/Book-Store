@@ -23,7 +23,7 @@
 </style>
 </head>
 <body>
-	<a href="list">Powrót do listy książek</a>
+	<a href="books">Powrót do listy książek</a>
 	<br />
 	<br />
 	<h3>Wprowadzanie nowej książki</h3>

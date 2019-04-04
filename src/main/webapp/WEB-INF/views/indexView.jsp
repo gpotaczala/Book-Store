@@ -10,7 +10,7 @@
 		<table border="0">
 			<tbody>
 				<tr>
-					<td width="150"><h3><a href="list">Lista książek</a></h3></td>	
+					<td width="150"><h3><a href="books">Lista książek</a></h3></td>	
 					<td width="150"><h3><a href="authors">Lista autorów</a></h3></td>		
 				</tr>		
 			</tbody>	
