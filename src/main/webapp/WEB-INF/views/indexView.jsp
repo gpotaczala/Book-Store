@@ -5,15 +5,16 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Magazyn książek</title>
 	</head>
-	<body>		
-		<h2>Magazyn książek</h2>
-		<table border="0">
+	<body>	
+		<div class="command_line">	
+		<table>
 			<tbody>
 				<tr>
-					<td width="150"><h3><a href="books">Lista książek</a></h3></td>	
-					<td width="150"><h3><a href="authors">Lista autorów</a></h3></td>		
+					<td width="200"><h2><a href="books">Lista książek</a></h2></td>	
+					<td width="200"><h2><a href="authors">Lista autorów</a></h2></td>		
 				</tr>		
 			</tbody>	
 		</table>	
+		</div>
 	</body>
 </html>

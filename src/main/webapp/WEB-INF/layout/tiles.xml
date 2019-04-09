@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="base" template="/WEB-INF/layout/page.jsp">
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="body" value="" />		
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+	</definition>
+	<definition name="indexView" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/indexView.jsp" />
+	</definition>
+	<definition name="booksListView" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/booksListView.jsp" />
+	</definition>
+	<definition name="bookAppendView" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/bookAppendView.jsp" />
+	</definition>
+	<definition name="bookDetailsView" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/bookDetailsView.jsp" />
+	</definition>
+	<definition name="authorsListView" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/authorsListView.jsp" />
+	</definition>
+	<definition name="authorAppendView" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/authorAppendView.jsp" />
+	</definition>
+	<definition name="authorDetailsView" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/authorDetailsView.jsp" />
+	</definition>		
+</tiles-definitions>
+	
