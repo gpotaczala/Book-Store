@@ -41,7 +41,7 @@
 						<spring:bind path="releaseDate">
 							<td>Data wydania:</td>
 							<td><form:input type="date" path="releaseDate"
-									placeholder="yyyy-MM-dd" /></td>
+									placeholder="rrrr-mm-dd" /></td>
 							<td><form:errors path="releaseDate" cssClass="line_error" /></td>
 						</spring:bind>
 					</tr>
@@ -50,8 +50,7 @@
 							<td><form:label path="author">Autor:</form:label></td>
 							<td><form:select path="author.id">
 									<form:option value="-1" label="--wybierz autora--" />
-									<form:options items="${authors}" itemValue="id"
-										itemLabel="surname" />
+									<form:options items="${authors}" itemValue="id" itemLabel="surnameName" />
 								</form:select></td>
 							<td><form:errors path="author" cssClass="line_error" /></td>
 						</spring:bind>

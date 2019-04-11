@@ -33,7 +33,7 @@
 					<tr>
 						<td align="right">${status.index}</td>
 						<td align="left"><a href="<c:url value="book-${book.id}" />">${book.title}</a></td>
-						<td>${book.author.getSurname()}${book.author.getName()}</td>
+						<td>${book.author.getSurname()} ${book.author.getName()}</td>
 						<td align="center"><fmt:formatDate pattern="yyyy-MM-dd"
 								value="${book.releaseDate}" /></td>
 						<td align="right">${book.numberOfPages}</td>

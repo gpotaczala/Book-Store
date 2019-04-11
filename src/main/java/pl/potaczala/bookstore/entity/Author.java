@@ -30,8 +30,11 @@ public class Author {
 	@Column(name = "ath_name")
 	private String name;
 	
+	private String surnameName;
+	
 	@OneToMany(mappedBy="author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Book> authorBooks;
+	
 
 	public long getId() {
 		return id;
@@ -64,4 +67,8 @@ public class Author {
 	public void setName(String name) {
 		this.name = name;
 	}	
+	
+	public String getSurnameName() {
+		return surname + ' ' + name;
+	}
 }
