@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-	<div class="container col-ms-8">
-		<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+	<div class="container">
+		<nav class="navbar navbar-expand-sm navbar-light bg-light">
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="navbar-brand" href="index">
@@ -27,5 +27,4 @@
 		</div>
 		</nav>
 	</div>
-	<br><br><br>
 </body>

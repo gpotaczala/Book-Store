@@ -10,8 +10,16 @@
 <title>Dodaj książkę</title>
 </head>
 <body>
-	<div class="container col-sm-5" align="left">
-		<h2>Wprowadzanie nowej książki</h2>
+	<div class="container">
+		<nav class="navbar navbar-expand-sm navbar-light bg-light">
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><span class="navbar-brand">Wprowadzanie nowej książki</span></li>
+			</ul>
+		</div>
+		</nav>
+	</div>
+	<div class="container" align="left">
 		<form:form method="POST" modelAttribute="book">
 			<spring:bind path="title">
 				<div class="form-group">
