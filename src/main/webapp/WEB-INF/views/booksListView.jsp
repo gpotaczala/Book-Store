@@ -9,17 +9,16 @@
 <title>Lista książek</title>
 </head>
 <body>
-	<div class="command_line">
-		<table>
-			<tr>
-				<td width="150"><h3><a href="index">Strona główna</a></h3></td>
-				<td width="150"><h3><a href="book-append">Dodaj książkę</a></h3></td>
-			</tr>
-		</table>
-	</div>
-	<div class="data_view">
-		<table>
-			<thead>
+		<div class="container  col-sm-8" align="center">
+			<h2>Lista książek w magazynie</h2>
+		</div>
+		<div class="container col-sm-8" align="right">
+			<a href="book-append" class="btn btn-info">Dodaj
+				książkę</a>
+		</div>
+	<div class="container col-sm-8">
+		<table class="table table-hover">
+			<thead class="thead-dark">
 				<tr>
 					<th align="right">Lp</th>
 					<th align="left">Tytuł</th>
@@ -33,7 +32,7 @@
 					<tr>
 						<td align="right">${status.index}</td>
 						<td align="left"><a href="<c:url value="book-${book.id}" />">${book.title}</a></td>
-						<td>${book.author.getSurname()} ${book.author.getName()}</td>
+						<td>${book.author.getSurnameName()}</td>
 						<td align="center"><fmt:formatDate pattern="yyyy-MM-dd"
 								value="${book.releaseDate}" /></td>
 						<td align="right">${book.numberOfPages}</td>

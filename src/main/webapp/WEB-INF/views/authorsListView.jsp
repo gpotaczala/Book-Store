@@ -7,35 +7,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Lista autorów</title>
 </head>
-<div class="command_line">
-	<body>
-		<table>
-			<tr>
-				<td width="150"><h3><a href="index">Strona główna</a></h3></td>
-				<td width="150"><h3><a href="author-append">Dodaj autora</a></h3></td>
-			</tr>
-		</table>
-</div>
-<div class="data_view">
-	<table>
-		<thead>
-			<tr>
-				<th width="50">#</th>
-				<th width="150">Nazwisko</th>
-				<th width="150">Imię</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${authors}" var="author" varStatus="status">
+<body>
+	<div class="container col-sm-6" align="center">
+		<h2>Lista autorów książek</h2>
+	</div>
+	<div class="container col-sm-6" align="right">
+		<a href="author-append" class="btn btn-info">Dodaj autora</a>
+	</div>
+	<div class="container col-sm-6">
+		<table class="table table-hover">
+			<thead class="thead-dark">
 				<tr>
-					<td align="right"><a
-						href="<c:url value="author-${author.id}" />">${status.index}</a></td>
-					<td>${author.getSurname()}</td>
-					<td>${author.getName()}</td>
+					<th>#</th>
+					<th>Nazwisko</th>
+					<th>Imię</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-</div>
+			</thead>
+			<tbody>
+				<c:forEach items="${authors}" var="author" varStatus="status">
+					<tr>
+						<td align="right"><a
+							href="<c:url value="author-${author.id}" />">${status.index}</a></td>
+						<td>${author.getSurname()}</td>
+						<td>${author.getName()}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

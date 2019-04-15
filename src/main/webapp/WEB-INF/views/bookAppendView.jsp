@@ -10,57 +10,72 @@
 <title>Dodaj książkę</title>
 </head>
 <body>
-	<div class="command_line">
-		<table>
-			<tr>
-				<td width="300"><h3>
-						<a href="books">Powrót do listy książek</a>
-					</h3></td>
-			</tr>
-		</table>
-	</div>
-	<div class="form_header">
-		<p>Wprowadzanie nowej książki</p>
-	</div>
-	<div class="form_view">
+	<div class="container col-sm-5" align="left">
+		<h2>Wprowadzanie nowej książki</h2>
 		<form:form method="POST" modelAttribute="book">
-			<table class="main_page table">
-				<tbody>
-					<tr>
-						<spring:bind path="title">
-							<td><form:label path="title">Tytuł:</form:label></td>
-							<td><form:input path="title" /></td>
-							<td><form:errors path="title" cssClass="line_error" /></td>
-						</spring:bind>
-					</tr>
-					<tr>
-						<td>Liczba stron:</td>
-						<td><form:input path="numberOfPages" /></td>
-					</tr>
-					<tr>
-						<spring:bind path="releaseDate">
-							<td>Data wydania:</td>
-							<td><form:input type="date" path="releaseDate"
-									placeholder="rrrr-mm-dd" /></td>
-							<td><form:errors path="releaseDate" cssClass="line_error" /></td>
-						</spring:bind>
-					</tr>
-					<tr>
-						<spring:bind path="author">
-							<td><form:label path="author">Autor:</form:label></td>
-							<td><form:select path="author.id">
-									<form:option value="-1" label="--wybierz autora--" />
-									<form:options items="${authors}" itemValue="id" itemLabel="surnameName" />
-								</form:select></td>
-							<td><form:errors path="author" cssClass="line_error" /></td>
-						</spring:bind>
-					</tr>
-					<tr>
-						<td colspan="2" align="right"><input type="submit"
-							value="Dodaj!" /></td>
-					</tr>
-				</tbody>
-			</table>
+			<spring:bind path="title">
+				<div class="form-group">
+					<form:label path="title" class="control-label">Tytuł:</form:label>
+					<c:if test="${pageContext.request.method!='POST'}">
+						<form:input path="title" id="title" class="form-control"
+							placeholder="Tutaj wprowadź tytuł książki" />
+					</c:if>
+					<c:if test="${pageContext.request.method=='POST'}">
+						<form:input path="title" id="title"
+							class="form-control ${status.error ? 'is-invalid':'is-valid' }"
+							placeholder="Tutaj wprowadź tytuł książki" />
+						<div class="valid-feedback">${status.error ? '':'Wygląda OK!' }</div>
+						<form:errors path="title" class="invalid-feedback" />
+					</c:if>
+				</div>
+			</spring:bind>
+			<div class="form-row">
+				<spring:bind path="releaseDate">
+					<div class="form-group col-sm-4">
+						<form:label path="releaseDate">Data wydania</form:label>
+						<c:if test="${pageContext.request.method!='POST'}">
+							<form:input path="releaseDate" class="form-control" type="date"
+								placeholder="Data w formacie: rrrr-mm-dd" />
+						</c:if>
+						<c:if test="${pageContext.request.method=='POST'}">
+							<form:input path="releaseDate"
+								class="form-control ${status.error ? 'is-invalid':'is-valid' }"
+								type="date" placeholder="Format daty: rrrr-mm-dd" />
+							<form:errors path="releaseDate" class="invalid-feedback" />
+							<div class="valid-feedback">${status.error ? '':'Piknie!' }</div>
+						</c:if>
+					</div>
+				</spring:bind>
+				<spring:bind path="author">
+					<div class="form-group col-sm-4">
+						<form:label path="author">Autor</form:label>
+						<c:if test="${pageContext.request.method!='POST'}">
+							<form:select path="author.id" class="form-control">
+								<form:option value="-1" label="--wybierz autora--" />
+								<form:options items="${authors}" itemValue="id"
+									itemLabel="surnameName" />
+							</form:select>
+						</c:if>
+						<c:if test="${pageContext.request.method=='POST'}">
+							<form:select path="author.id"
+								class="form-control  ${status.error ? 'is-invalid':'is-valid' }">
+								<form:option value="-1" label="--wybierz autora--" />
+								<form:options items="${authors}" itemValue="id"
+									itemLabel="surnameName" />
+							</form:select>
+							<div class="valid-feedback">${status.error ? '':'No po prostu super!' }</div>
+							<form:errors path="author" class="invalid-feedback" />
+						</c:if>
+					</div>
+				</spring:bind>
+				<div class="form-group col-sm-4">
+					<form:label path="numberOfPages">Liczba stron</form:label>
+					<form:input path="numberOfPages" class="form-control"
+						placeholder="np. 345" />
+				</div>				
+			</div>
+			<a href="books" class="btn btn-info">Anuluj</a>
+			<button type="submit" class="btn btn-primary">Dodaj</button>
 		</form:form>
 	</div>
 </body>

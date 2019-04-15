@@ -1,1 +1,1 @@
-<div class="footer">Copyright &copy: Grzegorz Potaczala</div>
+<div class="container" align="center">Copyright &copy: Grzegorz Potaczala</div>

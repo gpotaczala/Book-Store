@@ -6,15 +6,8 @@
 		<title>Magazyn książek</title>
 	</head>
 	<body>	
-		<div class="command_line">	
-		<table>
-			<tbody>
-				<tr>
-					<td width="200"><h2><a href="books">Lista książek</a></h2></td>	
-					<td width="200"><h2><a href="authors">Lista autorów</a></h2></td>		
-				</tr>		
-			</tbody>	
-		</table>	
-		</div>
+	<div align="center" >
+		<img src="resources/images/indeks2.jpg" class="img-fluid" alt="Chania" />
+	</div>
 	</body>
 </html>
