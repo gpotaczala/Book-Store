@@ -1,4 +1,4 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/layout/footer.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/layout/header.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/authorAppendView.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/author/authorForm.jsp=UTF-8

@@ -46,7 +46,7 @@
 								value="${book.releaseDate}" /></td>
 						<td>${book.numberOfPages}</td>
 						<td>
-							<spring:url value="book-${book.id}" var="detailsUrl" /> 
+							<spring:url value="book/${book.id}" var="detailsUrl" /> 
 							<spring:url value="book-${book.id}/delete" var="deleteUrl" /> 
 							<spring:url value="book-${book.id}/update" var="updateUrl" />
 

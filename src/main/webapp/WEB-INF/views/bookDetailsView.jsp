@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//PL" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,8 +19,7 @@
 				</span></li>
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="books"
-					class="btn btn-nav btn-outline-success">Powrót do listy książek</a></li>
+				<li class="nav-item"><a href="<c:url value = "/books"/>" class="btn btn-nav btn-outline-success">Powrót do listy książek</a></li>
 			</ul>
 		</div>
 		</nav>

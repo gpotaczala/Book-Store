@@ -18,7 +18,7 @@
 				</span></li>
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="authors"
+				<li class="nav-item"><a href="<c:url value = "/authors"/>"
 					class="btn btn-nav btn-outline-success">Powrót do listy autorów</a></li>
 			</ul>
 		</div>
@@ -28,11 +28,11 @@
 	<div class="container">
 		<div class="row">
 			<label class="col-sm-2">Nazwisko:</label>
-			<div class="col-sm-10">${author.getSurname()}</div>
+			<div class="col-sm-10">${authorForm.getSurname()}</div>
 		</div>
 		<div class="row">
 			<label class="col-sm-2">Imię:</label>
-			<div class="col-sm-10">${author.getName()}</div>
+			<div class="col-sm-10">${authorForm.getName()}</div>
 		</div>
 	</div>
 	<br>
@@ -48,12 +48,11 @@
 					<th>Liczba stron</th>
 				</tr>
 			<tbody>
-				<c:forEach items="${books}" var="book" varStatus="status">
+				<c:forEach items="${booksForm}" var="book" varStatus="status">
 					<tr>
 						<td>${status.index}</td>
 						<td>${book.title}</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd"
-								value="${book.releaseDate}" /></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${book.releaseDate}" /></td>
 						<td>${book.numberOfPages}</td>
 					</tr>
 				</c:forEach>

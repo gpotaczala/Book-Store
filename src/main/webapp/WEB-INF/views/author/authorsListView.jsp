@@ -17,20 +17,32 @@
 						książek</span></li>
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="author-append"
+				<li class="nav-item"><a href="authors/add"
 					class="btn btn-nav btn-outline-success">Dodaj autora</a></li>
 			</ul>
 		</div>
 		</nav>
 	</div>
 	<div class="container">
+		<c:if test="${not empty msg}">
+			<div class="alert alert-${alertType} alert-dismissible fade show"
+				role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>${msgHead}</strong> ${msg}
+			</div>
+		</c:if>
 		<table class="table table-hover">
 			<thead class="thead-dark">
 				<tr>
 					<th>#</th>
 					<th>Nazwisko</th>
 					<th>Imię</th>
-					<th align="center">Akcja</th>
+					<th></th>
+					<th>Akcja</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -39,18 +51,13 @@
 						<td>${status.index}</td>
 						<td>${author.getSurname()}</td>
 						<td>${author.getName()}</td>
-						<td>
-							<spring:url value="author-${author.id}" var="detailsUrl" />
-							<spring:url value="author-${author.id}/delete" var="deleteUrl" /> 
-							<spring:url value="author-${author.id}/update" var="updateUrl" />
-
-							<button class="btn btn-outline-info"
-								onclick="location.href='${detailsUrl}'">Info</button>
-							<button class="btn btn-outline-primary"
-								onclick="location.href='${updateUrl}'">Zmień</button>
-							<button class="btn btn-outline-danger"
-								onclick="this.disabled=true;post('${deleteUrl}')">Usuń</button>
-						</td>
+						<spring:url value="authors/${author.id}" var="detailsUrl" />
+						<spring:url value="authors/${author.id}/delete" var="deleteUrl" />
+						<spring:url value="authors/${author.id}/update" var="updateUrl" />
+						<td width="50"><button class="btn btn-outline-info btn-sm" onclick="location.href='${detailsUrl}'">Info</button></td>
+						<td width="50"><button class="btn btn-outline-primary btn-sm" onclick="location.href='${updateUrl}'">Zmień</button></td>
+						<td width="50"><form action="${deleteUrl}" method="post"> <button type="submit" class="btn btn-outline-danger btn-sm">Usuń</button></form></td>
+						<!-- <button class="btn btn-outline-danger" onclick="post('${deleteUrl}')">Usuń</button></td> -->
 					</tr>
 				</c:forEach>
 			</tbody>

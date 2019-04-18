@@ -21,13 +21,13 @@
 		<put-attribute name="body" value="/WEB-INF/views/bookDetailsView.jsp" />
 	</definition>
 	<definition name="authorsListView" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/authorsListView.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/author/authorsListView.jsp" />
 	</definition>
-	<definition name="authorAppendView" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/authorAppendView.jsp" />
+	<definition name="authorForm" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/author/authorForm.jsp" />
 	</definition>
 	<definition name="authorDetailsView" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/authorDetailsView.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/author/authorDetailsView.jsp" />
 	</definition>		
 </tiles-definitions>
 	

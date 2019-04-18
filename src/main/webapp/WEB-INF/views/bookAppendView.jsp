@@ -82,7 +82,7 @@
 						placeholder="np. 345" />
 				</div>				
 			</div>
-			<a href="books" class="btn btn-info">Anuluj</a>
+			<a href="books"  class="btn btn-info">Anuluj</a>
 			<button type="submit" class="btn btn-primary">Dodaj</button>
 		</form:form>
 	</div>

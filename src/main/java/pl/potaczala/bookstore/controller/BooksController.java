@@ -65,7 +65,7 @@ public class BooksController {
 		return mv;
 	}
 
-	@RequestMapping("/book-{id}")
+	@RequestMapping("/book/{id}")
 	public ModelAndView bookDetails(@PathVariable("id") Long id) {
 		Optional<Book> book = books.findById(id);		
 		if (!book.isPresent()) {}
