@@ -15,10 +15,16 @@
 
 	<c:choose>
 		<c:when test="${empty authorForm.surname}">
-			<% vTitle = "Wprowadzanie danych nowego autora"; vButtonCaption = "Dodaj"; %>
+			<%
+				vTitle = "Wprowadzanie danych nowego autora";
+						vButtonCaption = "Dodaj";
+			%>
 		</c:when>
 		<c:otherwise>
-			<% vTitle = "Edycja danych autora"; vButtonCaption = "Zapisz"; %>
+			<%
+				vTitle = "Edycja danych autora";
+						vButtonCaption = "Zapisz";
+			%>
 		</c:otherwise>
 	</c:choose>
 
@@ -39,20 +45,42 @@
 			<form:hidden path="id" />
 
 			<div class="form-row">
-				<div class="form-group col-sm-6">
-					<form:label path="surname" class="control-label">Nazwisko:</form:label>
-					<div>
-						<form:input path="surname" class="form-control" />
-						<form:errors path="surname" class="invalid-feedback" />
+				<spring:bind path="surname">
+					<div class="form-group col-sm-6">
+						<form:label path="surname" class="control-label">Nazwisko:</form:label>
+						<div>
+							<c:if test="${pageContext.request.method!='POST'}">
+								<form:input path="surname" class="form-control"
+									placeholder="Wprowadź nazwisko" />
+							</c:if>
+							<c:if test="${pageContext.request.method=='POST'}">
+								<form:input path="surname"
+									class="form-control ${status.error ? 'is-invalid':'is-valid' }"
+									placeholder="Wprowadź nazwisko" />
+								<div class="valid-feedback">${status.error ? '':'Jest ok!' }</div>
+								<form:errors path="surname" class="invalid-feedback" />
+							</c:if>
+						</div>
 					</div>
-				</div>
-				<div class="form-group col-sm-6">
-					<form:label path="name" class="control-label">Imię:</form:label>
-					<div>
-						<form:input path="name" class="form-control" />
-						<small><form:errors path="name" /></small>
+				</spring:bind>
+				<spring:bind path="name">
+					<div class="form-group col-sm-6">
+						<form:label path="name" class="control-label">Imię:</form:label>
+						<div>
+							<c:if test="${pageContext.request.method!='POST'}">
+								<form:input path="name" class="form-control"
+									placeholder="Wprowadź imię" />
+							</c:if>
+							<c:if test="${pageContext.request.method=='POST'}">
+								<form:input path="name"
+									class="form-control ${status.error ? 'is-invalid':'is-valid'}"
+									placeholder="Wprowadź imię" />
+								<div class="valid-feedback">${status.error ? '':':)'}</div>
+								<form:errors path="name" class="invalid-feedback" />
+							</c:if>
+						</div>
 					</div>
-				</div>
+				</spring:bind>
 			</div>
 			<a href="${authorActionUrl}" class="btn btn-info">Anuluj</a>
 			<button type="submit" class="btn btn-primary"><%=vButtonCaption%></button>

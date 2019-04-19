@@ -10,9 +10,7 @@ public interface AuthorService {
 	
 	List<Author> findAll();
 	
-	void addOrUpdate(Author author);
+	void saveOrUpdate(Author author);
 	
 	void delete(Long id);
-	
-	public boolean isAuthorNew(Author author);
 }

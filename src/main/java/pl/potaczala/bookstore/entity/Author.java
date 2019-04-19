@@ -5,19 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 @Entity
 @Table(name="author")
@@ -27,11 +20,9 @@ public class Author {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Size(min=2, max=50)
 	@Column(name = "ath_surname")
 	private String surname;
 	
-	@Size(min=2, max=50)
 	@Column(name = "ath_name")
 	private String name;
 	
@@ -78,7 +69,5 @@ public class Author {
 	
 	public boolean isNew() {		
 		return (this.id == null);
-	//	long authorId = (long) em.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(this);
-	   //return (authorId <= 0);
 	}	
 }

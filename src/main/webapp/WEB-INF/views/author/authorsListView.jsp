@@ -18,7 +18,7 @@
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item"><a href="authors/add"
-					class="btn btn-nav btn-outline-success">Dodaj autora</a></li>
+					class="btn btn-nav btn-success">Dodaj autora</a></li>
 			</ul>
 		</div>
 		</nav>
@@ -54,9 +54,9 @@
 						<spring:url value="authors/${author.id}" var="detailsUrl" />
 						<spring:url value="authors/${author.id}/delete" var="deleteUrl" />
 						<spring:url value="authors/${author.id}/update" var="updateUrl" />
-						<td width="50"><button class="btn btn-outline-info btn-sm" onclick="location.href='${detailsUrl}'">Info</button></td>
-						<td width="50"><button class="btn btn-outline-primary btn-sm" onclick="location.href='${updateUrl}'">Zmień</button></td>
-						<td width="50"><form action="${deleteUrl}" method="post"> <button type="submit" class="btn btn-outline-danger btn-sm">Usuń</button></form></td>
+						<td width="10"><button class="btn btn-outline-info btn-sm" onclick="location.href='${detailsUrl}'">Info</button></td>
+						<td width="10"><button class="btn btn-outline-primary btn-sm" onclick="location.href='${updateUrl}'">Zmień</button></td>
+						<td width="10"><form action="${deleteUrl}" method="post"> <button type="submit" class="btn btn-outline-danger btn-sm">Usuń</button></form></td>
 						<!-- <button class="btn btn-outline-danger" onclick="post('${deleteUrl}')">Usuń</button></td> -->
 					</tr>
 				</c:forEach>

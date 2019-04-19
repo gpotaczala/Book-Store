@@ -26,6 +26,17 @@
 	</div>
 
 	<div class="container">
+		<c:if test="${not empty msg}">
+			<div class="alert alert-${alertType} alert-dismissible fade show"
+				role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>${msgHead}</strong> ${msg}
+			</div>
+		</c:if>
+
 		<div class="row">
 			<label class="col-sm-2">Nazwisko:</label>
 			<div class="col-sm-10">${authorForm.getSurname()}</div>
@@ -52,7 +63,8 @@
 					<tr>
 						<td>${status.index}</td>
 						<td>${book.title}</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${book.releaseDate}" /></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd"
+								value="${book.releaseDate}" /></td>
 						<td>${book.numberOfPages}</td>
 					</tr>
 				</c:forEach>

@@ -19,7 +19,7 @@
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item"><a href="book-append"
-					class="btn btn-nav btn-outline-success">Dodaj książkę</a></li>
+					class="btn btn-nav btn-success">Dodaj książkę</a></li>
 			</ul>
 		</div>
 		</nav>
@@ -50,9 +50,9 @@
 							<spring:url value="book-${book.id}/delete" var="deleteUrl" /> 
 							<spring:url value="book-${book.id}/update" var="updateUrl" />
 
-							<button class="btn btn-outline-info" onclick="location.href='${detailsUrl}'"> Info </button>
-							<button class="btn btn-outline-primary" onclick="location.href='${updateUrl}'">Zmień</button>
-							<button class="btn btn-outline-danger" onclick="this.disabled=true;post('${deleteUrl}')">Usuń</button>
+							<button class="btn btn-outline-info btn-sm" onclick="location.href='${detailsUrl}'"> Info </button>
+							<button class="btn btn-outline-primary btn-sm" onclick="location.href='${updateUrl}'">Zmień</button>
+							<button class="btn btn-outline-danger btn-sm" onclick="this.disabled=true;post('${deleteUrl}')">Usuń</button>
 						</td>
 					</tr>
 				</c:forEach>

@@ -1,12 +1,11 @@
 package pl.potaczala.bookstore.controller;
 
-import java.util.Optional;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +14,22 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pl.potaczala.bookstore.entity.Author;
-import pl.potaczala.bookstore.repository.AuthorRep;
 import pl.potaczala.bookstore.service.AuthorService;
+import pl.potaczala.bookstore.validator.AuthorFormValidator;
 
 @Controller
 public class AuthorController {
 
 	@Autowired
 	private AuthorService authorService;
+	
+	@Autowired
+	AuthorFormValidator authorFormValidator;	
+	
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.setValidator(authorFormValidator);
+	}		
 
 	// Lista
 	@RequestMapping(value = "/authors", method = RequestMethod.GET)
@@ -34,21 +41,21 @@ public class AuthorController {
 
 	// Wprwoadzenie nowego lub aktualizacja
 	@RequestMapping(value = "/authors", method = RequestMethod.POST)
-	public ModelAndView addOrUpdateAuthor(@ModelAttribute("authorForm") @Valid Author author, BindingResult result,
+	public ModelAndView addOrUpdateAuthor(@ModelAttribute("authorForm") @Validated Author author, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
 		ModelAndView mv;
 		if (!result.hasErrors()) {
 			redirectAttributes.addFlashAttribute("alertType", "success");
 			redirectAttributes.addFlashAttribute("msgHead", "Sukces!");			
-			if (authorService.isAuthorNew(author)) {
+			if (author.isNew()) {
 				redirectAttributes.addFlashAttribute("msg", "Pomyœlnie wprowadzono autora!");
 			} else {
 				redirectAttributes.addFlashAttribute("msg", "Pomyœlnie zaktualizowano dane autora!");
 			}
 
-			authorService.addOrUpdate(author);
+			authorService.saveOrUpdate(author);
 
-			mv = new ModelAndView("redirect:/authors");
+			mv = new ModelAndView("redirect:/authors/"+ author.getId());
 		} else {
 			mv = new ModelAndView("authorForm");
 		}
