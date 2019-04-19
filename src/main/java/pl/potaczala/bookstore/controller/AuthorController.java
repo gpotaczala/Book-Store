@@ -34,7 +34,7 @@ public class AuthorController {
 	// Lista
 	@RequestMapping(value = "/authors", method = RequestMethod.GET)
 	public ModelAndView authorList() {
-		ModelAndView mv = new ModelAndView("authorsListView");
+		ModelAndView mv = new ModelAndView("authorsList");
 		mv.addObject("authors", authorService.findAll());
 		return mv;
 	}
@@ -98,7 +98,7 @@ public class AuthorController {
 		Author author = authorService.findById(id);
 		if (author == null) {
 		}
-		ModelAndView mv = new ModelAndView("authorDetailsView");
+		ModelAndView mv = new ModelAndView("authorDetails");
 		mv.addObject("authorForm", author);
 		mv.addObject("booksForm", author.getAuthorBooks());
 		return mv;

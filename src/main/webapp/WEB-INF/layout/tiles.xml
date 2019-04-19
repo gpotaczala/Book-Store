@@ -11,23 +11,23 @@
 	<definition name="indexView" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views/indexView.jsp" />
 	</definition>
-	<definition name="booksListView" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/booksListView.jsp" />
+	<definition name="booksList" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/book/booksList.jsp" />
 	</definition>
-	<definition name="bookAppendView" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/bookAppendView.jsp" />
+	<definition name="bookForm" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/book/bookForm.jsp" />
 	</definition>
-	<definition name="bookDetailsView" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/bookDetailsView.jsp" />
+	<definition name="bookDetails" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/book/bookDetails.jsp" />
 	</definition>
-	<definition name="authorsListView" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/author/authorsListView.jsp" />
+	<definition name="authorsList" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/author/authorsList.jsp" />
 	</definition>
 	<definition name="authorForm" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views/author/authorForm.jsp" />
 	</definition>
-	<definition name="authorDetailsView" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/author/authorDetailsView.jsp" />
+	<definition name="authorDetails" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/author/authorDetails.jsp" />
 	</definition>		
 </tiles-definitions>
 	

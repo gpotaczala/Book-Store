@@ -25,6 +25,17 @@
 		</nav>
 	</div>
 	<div class="container">
+		<c:if test="${not empty msg}">
+			<div class="alert alert-${alertType} alert-dismissible fade show"
+				role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>${msgHead}</strong> ${msg}
+			</div>
+		</c:if>
+			
 		<div class="row">
 			<label class="col-sm-2">Tytuł:</label>
 			<div class="col-sm-10">${book.title}</div>

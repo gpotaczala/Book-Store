@@ -10,17 +10,37 @@
 <title>Dodaj książkę</title>
 </head>
 <body>
+	<%!String vTitle, vButtonCaption;%>
+
+	<c:choose>
+		<c:when test="${empty bookF.title}">
+			<%
+				vTitle = "Wprowadzanie danych nowej książki";
+						vButtonCaption = "Dodaj";
+			%>
+		</c:when>
+		<c:otherwise>
+			<%
+				vTitle = "Edycja danych książki";
+						vButtonCaption = "Zapisz";
+			%>
+		</c:otherwise>
+	</c:choose>
 	<div class="container">
 		<nav class="navbar navbar-expand-sm navbar-light bg-light">
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><span class="navbar-brand">Wprowadzanie nowej książki</span></li>
+				<li class="nav-item"><span class="navbar-brand"><%=vTitle%></span></li>
 			</ul>
 		</div>
 		</nav>
 	</div>
 	<div class="container" align="left">
-		<form:form method="POST" modelAttribute="book">
+		<spring:url value="/books" var="bookActionUrl" />	
+	
+		<form:form method="POST" modelAttribute="bookF" action="${bookActionUrl}">
+			<form:hidden path="id" />
+			
 			<spring:bind path="title">
 				<div class="form-group">
 					<form:label path="title" class="control-label">Tytuł:</form:label>
@@ -60,7 +80,7 @@
 						<c:if test="${pageContext.request.method!='POST'}">
 							<form:select path="author.id" class="form-control">
 								<form:option value="-1" label="--wybierz autora--" />
-								<form:options items="${authors}" itemValue="id"
+								<form:options items="${authorsF}" itemValue="id"
 									itemLabel="surnameName" />
 							</form:select>
 						</c:if>
@@ -68,7 +88,7 @@
 							<form:select path="author.id"
 								class="form-control  ${status.error ? 'is-invalid':'is-valid' }">
 								<form:option value="-1" label="--wybierz autora--" />
-								<form:options items="${authors}" itemValue="id"
+								<form:options items="${authorsF}" itemValue="id"
 									itemLabel="surnameName" />
 							</form:select>
 							<div class="valid-feedback">${status.error ? '':'No po prostu super!' }</div>
@@ -80,10 +100,10 @@
 					<form:label path="numberOfPages">Liczba stron</form:label>
 					<form:input path="numberOfPages" class="form-control"
 						placeholder="np. 345" />
-				</div>				
+				</div>
 			</div>
-			<a href="books"  class="btn btn-info">Anuluj</a>
-			<button type="submit" class="btn btn-primary">Dodaj</button>
+			<a href="<c:url value="/books"/>" class="btn btn-info">Anuluj</a>
+			<button type="submit" class="btn btn-primary"><%=vButtonCaption%></button>
 		</form:form>
 	</div>
 </body>
