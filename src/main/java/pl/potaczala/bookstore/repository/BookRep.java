@@ -13,7 +13,4 @@ import pl.potaczala.bookstore.entity.Book;
 public interface BookRep extends JpaRepository<Book, Long> {
 	
 	public List<Book> findByOrderByTitleAsc();
-	
-	@Transactional
-	public void deleteById(Long id);
 }

@@ -2,8 +2,10 @@ package pl.potaczala.bookstore.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +27,7 @@ public class Book {
 	private String title;
 	
 	@ManyToOne
-	@JoinColumn(name = "ath_id")
+	@JoinColumn(name = "ath_id")	
 	private Author author;
 
 	@Column(name = "bk_number_of_pages")
@@ -78,4 +80,14 @@ public class Book {
 	public boolean isNew() {		
 		return (this.id == null);
 	}		
+	
+	public boolean equals(Object obj) {
+	boolean result;
+    if (obj == null) return false;
+	    if (obj == this) return true;
+	    if (!(obj instanceof Book)) return false;
+	    Book b = (Book) obj;
+	    result = (b.getTitle().equalsIgnoreCase(this.getTitle()));
+	    return result;
+	}	
 }

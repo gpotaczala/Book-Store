@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.potaczala.bookstore.entity.Author;
 import pl.potaczala.bookstore.entity.Book;
 import pl.potaczala.bookstore.repository.BookRep;
 
@@ -13,6 +14,9 @@ public class BookServiceImpl implements BookService {
 
 	@Autowired
 	BookRep bookRep;
+	
+	@Autowired
+	AuthorService authorService;
 
 	@Override
 	public void saveOrUpdate(Book book) {
@@ -32,6 +36,13 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<Book> findAll() {
-		return bookRep.findAll();
+		return bookRep.findByOrderByTitleAsc();
+	}
+	
+	@Override
+	public void deleteBookFromAuthorObj(Long id) {
+		Author author = authorService.findById(findById(id).getAuthor().getId());
+		author.deleteBook(findById(id));
+		authorService.saveOrUpdate(author);
 	}
 }

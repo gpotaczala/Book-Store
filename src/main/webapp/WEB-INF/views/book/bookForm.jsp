@@ -63,12 +63,12 @@
 						<form:label path="releaseDate">Data wydania</form:label>
 						<c:if test="${pageContext.request.method!='POST'}">
 							<form:input path="releaseDate" class="form-control" type="date"
-								placeholder="Data w formacie: rrrr-mm-dd" />
+								placeholder="Data w formacie: rrrr-mm-dd" value="2001-01-01"/>
 						</c:if>
 						<c:if test="${pageContext.request.method=='POST'}">
 							<form:input path="releaseDate"
 								class="form-control ${status.error ? 'is-invalid':'is-valid' }"
-								type="date" placeholder="Format daty: rrrr-mm-dd" />
+								type="date" placeholder="Format daty: rrrr-mm-dd" value="2001-01-01" />
 							<form:errors path="releaseDate" class="invalid-feedback" />
 							<div class="valid-feedback">${status.error ? '':'Piknie!' }</div>
 						</c:if>

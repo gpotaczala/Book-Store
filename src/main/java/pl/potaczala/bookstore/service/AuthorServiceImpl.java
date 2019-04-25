@@ -19,7 +19,7 @@ public class AuthorServiceImpl implements AuthorService {
 	public void saveOrUpdate(Author author) {
 		//Druga walidacja w tym miejscu i zapis wybranych pól?
 		
-		authorRep.save(author);
+		authorRep.saveAndFlush(author);
 	}
 
 	@Override
@@ -34,6 +34,6 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	public List<Author> findAll() {
-		return authorRep.findAll();
+		return authorRep.findByOrderBySurnameAsc();
 	}
 }

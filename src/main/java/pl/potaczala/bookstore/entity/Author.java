@@ -1,5 +1,6 @@
 package pl.potaczala.bookstore.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,23 +14,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="author")
+@Table(name = "author")
 public class Author {
 	@Id
 	@Column(name = "ath_id", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(name = "ath_surname")
 	private String surname;
-	
+
 	@Column(name = "ath_name")
 	private String name;
-	
+
 	private String surnameName;
-	
-	@OneToMany(mappedBy="author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Book> authorBooks;
+
+	@OneToMany(cascade = {CascadeType.PERSIST}, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "author")
+	//@OneToMany(cascade = {CascadeType.REMOVE}, fetch = FetchType.EAGER, mappedBy = "author")
+	private List<Book> authorBooks = new ArrayList<Book>();
 
 	public Long getId() {
 		return id;
@@ -61,13 +63,19 @@ public class Author {
 
 	public void setName(String name) {
 		this.name = name;
-	}	
-	
+	}
+
 	public String getSurnameName() {
 		return surname + ' ' + name;
 	}
-	
-	public boolean isNew() {		
+
+	public boolean isNew() {
 		return (this.id == null);
-	}	
+	}
+	
+	public boolean deleteBook(Book book) {
+		boolean result;
+		result = authorBooks.remove(book);
+		return result;
+	}
 }
