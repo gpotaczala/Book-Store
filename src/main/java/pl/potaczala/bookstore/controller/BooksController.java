@@ -93,8 +93,8 @@ public class BooksController {
 	// Usuwanie
 	@RequestMapping(value = "/books/{id}/delete")
 	public ModelAndView bookDelete(@PathVariable("id") Long id, final RedirectAttributes redirectAttributes) {
-		//bookService.delete(id);
-		bookService.deleteBookFromAuthorObj(id);
+		bookService.delete(id);
+		//bookService.deleteBookFromAuthorObj(id);
 
 		redirectAttributes.addFlashAttribute("alertType", "success");
 		redirectAttributes.addFlashAttribute("msgHead", "Sukces!");				

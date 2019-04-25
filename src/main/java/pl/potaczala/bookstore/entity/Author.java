@@ -29,8 +29,8 @@ public class Author {
 
 	private String surnameName;
 
-	@OneToMany(cascade = {CascadeType.PERSIST}, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "author")
-	//@OneToMany(cascade = {CascadeType.REMOVE}, fetch = FetchType.EAGER, mappedBy = "author")
+	//@OneToMany(cascade = {CascadeType.PERSIST}, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "author")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
 	private List<Book> authorBooks = new ArrayList<Book>();
 
 	public Long getId() {

@@ -2,6 +2,8 @@ package pl.potaczala.bookstore.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +18,12 @@ public class AuthorServiceImpl implements AuthorService {
 	AuthorRep authorRep;
 
 	@Override
+	@Transactional	
 	public void saveOrUpdate(Author author) {
 		//Druga walidacja w tym miejscu i zapis wybranych pól?
-		
-		authorRep.saveAndFlush(author);
+		authorRep.save(author);
+		authorRep.save(author);
+		authorRep.save(author);		
 	}
 
 	@Override

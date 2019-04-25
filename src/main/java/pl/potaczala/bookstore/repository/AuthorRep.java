@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import pl.potaczala.bookstore.entity.Author;
 
 @Repository
-public interface AuthorRep extends JpaRepository<Author, Long>  {
+public interface AuthorRep extends JpaRepository<Author, Long>, AuthorRepCustom  {
 	
 	public List<Author> findByOrderBySurnameAsc();
 }
