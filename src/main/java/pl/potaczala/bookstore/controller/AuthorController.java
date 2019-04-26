@@ -1,6 +1,13 @@
 package pl.potaczala.bookstore.controller;
 
+import java.sql.SQLException;
+
+import javax.persistence.PersistenceException;
+
+import org.hibernate.exception.ConstraintViolationException;
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -22,14 +29,14 @@ public class AuthorController {
 
 	@Autowired
 	private AuthorService authorService;
-	
+
 	@Autowired
-	AuthorFormValidator authorFormValidator;	
-	
+	AuthorFormValidator authorFormValidator;
+
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		binder.setValidator(authorFormValidator);
-	}		
+	}
 
 	// Lista
 	@RequestMapping(value = "/authors", method = RequestMethod.GET)
@@ -45,17 +52,31 @@ public class AuthorController {
 			final RedirectAttributes redirectAttributes) {
 		ModelAndView mv;
 		if (!result.hasErrors()) {
-			redirectAttributes.addFlashAttribute("alertType", "success");
-			redirectAttributes.addFlashAttribute("msgHead", "Sukces!");			
-			if (author.isNew()) {
-				redirectAttributes.addFlashAttribute("msg", "Pomyœlnie wprowadzono autora!");
-			} else {
-				redirectAttributes.addFlashAttribute("msg", "Pomyœlnie zaktualizowano dane autora!");
+			boolean isNew = author.isNew();
+			try {
+				authorService.saveOrUpdate(author);
+
+				redirectAttributes.addFlashAttribute("alertType", "success");
+				redirectAttributes.addFlashAttribute("msgHead", "Sukces!");
+				if (isNew) {
+					redirectAttributes.addFlashAttribute("msg", "Pomyœlnie wprowadzono autora!");
+				} else {
+					redirectAttributes.addFlashAttribute("msg", "Pomyœlnie zaktualizowano dane autora!");
+				}
+				mv = new ModelAndView("redirect:/authors/" + author.getId());
+
+			} catch (Exception e) {
+				redirectAttributes.addFlashAttribute("alertType", "warning");
+				redirectAttributes.addFlashAttribute("msgHead", "B³¹d!");
+				if (isNew) {
+					redirectAttributes.addFlashAttribute("msg", "Wyst¹pi³ b³¹d podczas wprowadzania autora!");
+				} else {
+					redirectAttributes.addFlashAttribute("msg", "Wyst¹pi³ b³¹d podczas aktualizacji danych autora!");
+				}
+
+				mv = new ModelAndView("redirect:/authors");
 			}
 
-			authorService.saveOrUpdate(author);
-
-			mv = new ModelAndView("redirect:/authors/"+ author.getId());
 		} else {
 			mv = new ModelAndView("authorForm");
 		}
@@ -67,7 +88,7 @@ public class AuthorController {
 	public ModelAndView showAddAuthorForm() {
 		ModelAndView mv = new ModelAndView("authorForm");
 		mv.addObject("authorForm", new Author());
-		return mv;  
+		return mv;
 	}
 
 	// Formularz aktualizacji
@@ -82,11 +103,25 @@ public class AuthorController {
 	// Usuwanie
 	@RequestMapping(value = "/authors/{id}/delete")
 	public ModelAndView authorDelete(@PathVariable("id") Long id, final RedirectAttributes redirectAttributes) {
-		authorService.delete(id);
 
-		redirectAttributes.addFlashAttribute("alertType", "success");
-		redirectAttributes.addFlashAttribute("msgHead", "Sukces!");				
-		redirectAttributes.addFlashAttribute("msg", "Pomyœlnie usuniêto autora!");
+		if (!authorService.findById(id).getAuthorBooks().isEmpty()) {
+			redirectAttributes.addFlashAttribute("alertType", "warning");
+			redirectAttributes.addFlashAttribute("msgHead", "Uwaga!");
+			redirectAttributes.addFlashAttribute("msg", "Nie mo¿na usun¹æ autora, poniewa¿ w serwisie istniej¹ powi¹zane z nim ksi¹¿ki!");			
+		} else {
+
+			try {
+				authorService.delete(id);
+				redirectAttributes.addFlashAttribute("alertType", "success");
+				redirectAttributes.addFlashAttribute("msgHead", "Sukces!");
+				redirectAttributes.addFlashAttribute("msg", "Pomyœlnie usuniêto autora!");
+			} catch (DataAccessException ce) {
+				redirectAttributes.addFlashAttribute("alertType", "danger");
+				redirectAttributes.addFlashAttribute("msgHead", "B³¹d!");
+				redirectAttributes.addFlashAttribute("msg",
+						"Podczas próby usuniêcia autora wyst¹pi³ b³¹d: " + ce.getMessage());
+			}
+		}
 
 		ModelAndView mv = new ModelAndView("redirect:/authors");
 		return mv;
