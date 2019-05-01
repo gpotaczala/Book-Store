@@ -90,13 +90,13 @@
 						<td>${book.author.getSurnameName()}</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${book.releaseDate}" /></td>
 						<td>${book.numberOfPages}</td>						
-						<td width="70"><button class="btn btn-outline-info btn-sm btn-block" onclick="location.href='${detailsUrl}'"><span class="fa fa-info"></span></button></td>
-						<td width="70"><button class="btn btn-outline-primary btn-sm btn-block" onclick="location.href='${updateUrl}'"><span class="fa fa-edit"></span></button></td>
-						<td width="70">
+						<td width="60"><button class="btn btn-outline-info btn-sm btn-block" onclick="location.href='${detailsUrl}'"><span class="fas fa-info"></span></button></td>
+						<td width="60"><button class="btn btn-outline-primary btn-sm btn-block" onclick="location.href='${updateUrl}'"><span class="fas fa-pen"></span></button></td>
+						<td width="60">
 							<!-- #1 - delete bez dialogu <td width="10"><form action="${deleteUrl}" method="post"> <button type="submit" class="btn btn-outline-danger btn-sm">Usuń</button></form></td>   -->
 							<!-- #2 - dialog wersja 1 <td width="10"><button class="btn btn-outline-danger btn-sm" onclick="deleteConfirm('${deleteUrl}')">Usuń</button></td>  --> 
 							<!-- #3 - dialog wersja 2 --> 
-							<button class="btn btn-outline-danger btn-sm btn-block" data-toggle="modal" data-target="#deleteConfirmDialog" data-url="${deleteUrl}" data-title="${book.title}"><span class="fa fa-trash"></span></button>
+							<button class="btn btn-outline-danger btn-sm btn-block" data-toggle="modal" data-target="#deleteConfirmDialog" data-url="${deleteUrl}" data-title="${book.title}"><span class="fas fa-trash"></span></button>
 						</td>
 						</div>
 					</tr>

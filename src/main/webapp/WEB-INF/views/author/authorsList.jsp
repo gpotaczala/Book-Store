@@ -54,11 +54,11 @@
 						<spring:url value="authors/${author.id}" var="detailsUrl" />
 						<spring:url value="authors/${author.id}/delete" var="deleteUrl" />
 						<spring:url value="authors/${author.id}/update" var="updateUrl" />
-						<td width="70"><button class="btn btn-outline-info btn-sm btn-block" onclick="location.href='${detailsUrl}'"><span class="fa fa-info"></span></button></td>
-						<td width="70"><button class="btn btn-outline-primary btn-sm btn-block" onclick="location.href='${updateUrl}'"><span class="fa fa-edit"></span></button></td>
+						<td width="60"><button class="btn btn-outline-info btn-sm btn-block" onclick="location.href='${detailsUrl}'"><span class="fas fa-info"></span></button></td>
+						<td width="60"><button class="btn btn-outline-primary btn-sm btn-block" onclick="location.href='${updateUrl}'"><span class="fas fa-pen"></span></button></td>
 						<!--  <td width="10"><form action="${deleteUrl}" method="post"> <button type="submit" class="btn btn-outline-danger btn-sm">Usuń</button></form></td>-->
-						<td width="70">
-							<button class="btn btn-outline-danger btn-sm btn-block" data-toggle="modal" data-target="#deleteConfirmDialog" data-url="${deleteUrl}" data-author="${author.getSurnameName()}"><span class="fa fa-trash"></span></button>
+						<td width="60">
+							<button class="btn btn-outline-danger btn-sm btn-block" data-toggle="modal" data-target="#deleteConfirmDialog" data-url="${deleteUrl}" data-author="${author.getSurnameName()}"><span class="fas fa-trash"></span></button>
 						</td>
 					</tr>
 				</c:forEach>
