@@ -41,7 +41,7 @@
 					<th>Nazwisko</th>
 					<th>Imię</th>
 					<th></th>
-					<th>Akcja</th>
+					<th></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -54,14 +54,62 @@
 						<spring:url value="authors/${author.id}" var="detailsUrl" />
 						<spring:url value="authors/${author.id}/delete" var="deleteUrl" />
 						<spring:url value="authors/${author.id}/update" var="updateUrl" />
-						<td width="10"><button class="btn btn-outline-info btn-sm" onclick="location.href='${detailsUrl}'">Info</button></td>
-						<td width="10"><button class="btn btn-outline-primary btn-sm" onclick="location.href='${updateUrl}'">Zmień</button></td>
-						<td width="10"><form action="${deleteUrl}" method="post"> <button type="submit" class="btn btn-outline-danger btn-sm">Usuń</button></form></td>
-						<!-- <button class="btn btn-outline-danger" onclick="post('${deleteUrl}')">Usuń</button></td> -->
+						<td width="70"><button class="btn btn-outline-info btn-sm btn-block" onclick="location.href='${detailsUrl}'"><span class="fa fa-info"></span></button></td>
+						<td width="70"><button class="btn btn-outline-primary btn-sm btn-block" onclick="location.href='${updateUrl}'"><span class="fa fa-edit"></span></button></td>
+						<!--  <td width="10"><form action="${deleteUrl}" method="post"> <button type="submit" class="btn btn-outline-danger btn-sm">Usuń</button></form></td>-->
+						<td width="70">
+							<button class="btn btn-outline-danger btn-sm btn-block" data-toggle="modal" data-target="#deleteConfirmDialog" data-url="${deleteUrl}" data-author="${author.getSurnameName()}"><span class="fa fa-trash"></span></button>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
+
+  <!-- The confirmation model -->
+  <div class="modal fade" id="deleteConfirmDialog" role="dialog" > 
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <div class="modal-header">
+          <h4 class="modal-title" id="dialogHeader">Potwierdź</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">	×</button>
+        </div>
+        
+        <div class="modal-body">
+          <p id="dialogQuestion"> Usunąć ... ?</p>
+        </div>
+        
+        <div class="modal-footer">
+          <button id="dialogNo" type="button" class="btn btn-info" data-dismiss="modal">Anuluj</button> 
+          <button id="dialogBtYes" type="submit" class="btn btn-danger">Usuń</button>        
+        </div>     
+      </div>
+    </div>
+  </div>	
+ 
+ <script>
+  	$('#deleteConfirmDialog').on('show.bs.modal', function (event) {
+ 		$(this).find('#dialogHeader').text("Usuwanie autora"); 
+ 		document.getElementById("dialogQuestion").innerHTML = "Czy na pewno chcesz usunąć autora : <b>&#34;" + $(event.relatedTarget).data('author') + "&#34;</b> ?";
+ 		$(this).find('#dialogBtYes').attr('href', $(event.relatedTarget).data('url'));
+	});
+ 	
+ 	$('#dialogBtYes').click(function(event) {
+ 		event.preventDefault();
+ 		postToUrl($(this).attr('href')); 
+ 		$('#deleteConfirmDialog').modal('hide');  
+ 	});
+ 	
+	function postToUrl(url) {
+	    var form = document.createElement('form');
+	    form.action = url;
+	    form.method = 'POST';
+	    form.options = {};
+	    document.body.appendChild(form);
+	    form.submit();	    
+	} 	
+	</script>
+	
 </body>
 </html>

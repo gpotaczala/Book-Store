@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Szczegóły książki</title>
+
 </head>
 <body>
 
@@ -19,7 +20,8 @@
 				</span></li>
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="<c:url value = "/books"/>" class="btn btn-nav btn-outline-success">Powrót do listy książek</a></li>
+				<li class="nav-item"><a href="<c:url value = "/books"/>"
+					class="btn btn-nav btn-outline-success">Powrót do listy książek</a></li>
 			</ul>
 		</div>
 		</nav>
@@ -35,7 +37,7 @@
 				<strong>${msgHead}</strong> ${msg}
 			</div>
 		</c:if>
-			
+
 		<div class="row">
 			<label class="col-sm-2">Tytuł:</label>
 			<div class="col-sm-10">${book.title}</div>
